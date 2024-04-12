@@ -8,8 +8,9 @@ The methodology utilizes mathematical techniques to analyze the consistency and 
 - **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings.
 - **Count Inversions (CIN)**: Measures the degree of disorder within these rankings.
 - **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment.
+- **Custom Relevance Evaluation**: Scoring responses based on specific criteria relevant to the task, such as accuracy, completeness, engagement, or alignment with a given prompt.
 
-These tools collectively provide nuanced insights into how well the models' responses align with human-like evaluations, facilitating an effective ranking of models based on their performance.
+ Combining these techniques (PEN, CIN, and LIS) with a custom automatic relevance evaluation can provide a comprehensive and robust assessment framework for evaluating AI-generated responses, especially in contexts where there is no single correct answer, and responses are open-ended.
 
 ## Example Application
 **Scenario**:
@@ -95,6 +96,12 @@ Here are the results from evaluating the given relevance scores [5, 4, 5, 4, 5, 
 - The length of the longest subsequence where each score is higher than or equal to the previous score in the sequence. This indicates the largest set of responses that show an increasing or at least non-decreasing trend in quality. The longest subsequence where each score is non-decreasing is limited to two, reflecting the back-and-forth pattern in the scoring.
 
 These results demonstrate how the specified metrics can quantitatively evaluate the structure and consistency of LLM-generated content, providing a systematic approach for refining marketing strategies and extending these principles to various forms of generative AI applications.
+
+### Benefits of Using Combined Techniques:
+- **Comprehensive Feedback**: The combination allows evaluators to not only measure how "correct" or "appropriate" an individual response is but also to analyze the overall behavior of the AI across a series of responses. This is crucial for applications like chatbots, creative content generation, and educational tools, where context and progression are important.
+- **Improved Model Training**: These metrics can also inform the training process for AI models. Understanding where and how frequently inversions occur or how long the longest increasing subsequence is can help in tuning the model to produce more coherent and contextually appropriate responses.
+- **Scalability**: Automatic evaluations are scalable and can handle large volumes of data without the need for extensive human intervention. This is especially useful in iterative development environments and continuous deployment settings.
+- **Objective Analysis**: By quantifying aspects of the generated content, developers and researchers can more objectively compare different models or different configurations of the same model, leading to more data-driven decision-making.
 
 ### Expanding the Horizon
 The potential of this evaluation framework extends beyond textual content generation. It can be adapted to assess a variety of open-ended responses beyond textual content. For instance:
