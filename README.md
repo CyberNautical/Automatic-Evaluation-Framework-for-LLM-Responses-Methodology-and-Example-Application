@@ -26,7 +26,7 @@ The objective is to evaluate whether LLM-generated marketing content is appropri
 - **Variant 1**:  A prompt requesting an advertisement for "Neb Cafe latte" for a blog post aimed at boosting brand awareness among adults who prefer home-brewed coffee. The response emphasized luxury, convenience, and local relevance, earning a perfect score for relevance. [Variant 1](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%201.md)
 - **Variant 2**: Modified the response to introduce an irrelevant product mix (pizza in coffee), which was poorly evaluated due to its inconsistency with the brand and audience expectations, demonstrating the effectiveness of the LLM in distinguishing relevant content. [Variant 2](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%202.md)
 
-### Custom Evaluation for PEN, CIN, LIS
+### Evaluation for PEN, CIN, LIS
 ```python
 import numpy as np
 from scipy.stats import entropy
