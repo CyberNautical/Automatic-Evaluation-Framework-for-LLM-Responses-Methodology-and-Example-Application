@@ -34,42 +34,42 @@ import itertools
 
 def permutation_entropy(time_series, m, delay):
     """Calculate the Permutation Entropy."""
-    n = len(time_series)
-    permutations = np.array(list(itertools.permutations(range(m))))
-    c = np.zeros(len(permutations))
+    n = len(time_series) # Number of elements in the time series
+    permutations = np.array(list(itertools.permutations(range(m))))  # All possible permutations of order 'm'
+    c = np.zeros(len(permutations)) # Initialize a count array for each permutation
     
-    for i in range(n - delay * (m - 1)):
-        # Sorted time series pattern index
-        sorted_index_array = np.argsort(time_series[i:i + delay * m:delay])
-        for j in range(len(permutations)):
-            if np.array_equal(sorted_index_array, permutations[j]):
-                c[j] += 1
+    for i in range(n - delay * (m - 1)): # Iterate over the time series with the specified delay
+        # Sorted time series pattern index 
+        sorted_index_array = np.argsort(time_series[i:i + delay * m:delay]) # Get the indices that would sort the subsequence
+        for j in range(len(permutations)): # Check each permutation
+            if np.array_equal(sorted_index_array, permutations[j]): # If the sorted indices match a permutation
+                c[j] += 1 # Increment the count for this permutation
 
-    c /= c.sum()
-    pe = entropy(c)
+    c /= c.sum() # Normalize the counts to get a probability distribution
+    pe = entropy(c) # Calculate the Shannon entropy of the distribution
     return pe
 
 def count_inversions(sequence):
     """Count inversions in the sequence."""
-    n = len(sequence)
-    count = 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            if sequence[i] > sequence[j]:
-                count += 1
+    n = len(sequence) # Length of the sequence
+    count = 0 # Initialize inversion count
+    for i in range(n): # Iterate over each element in the sequence
+        for j in range(i + 1, n): # Iterate over elements after the current element
+            if sequence[i] > sequence[j]: # If an element later in the sequence is smaller
+                count += 1 # It's an inversion, increment the count
     return count
 
 def longest_increasing_subsequence(sequence):
     """Calculate the Longest Increasing Subsequence."""
-    n = len(sequence)
-    lis = [1] * n
+    n = len(sequence) # Length of the sequence
+    lis = [1] * n # Initialize LIS value for each element to 1
 
-    for i in range(1, n):
-        for j in range(0, i):
-            if sequence[i] > sequence[j] and lis[i] < lis[j] + 1:
-                lis[i] = lis[j] + 1
+    for i in range(1, n): # Start from the second element
+        for j in range(0, i): # Compare with all elements before it
+            if sequence[i] > sequence[j] and lis[i] < lis[j] + 1: # If the current element can extend the increasing sequence
+                lis[i] = lis[j] + 1 # Update the LIS for this element
 
-    return max(lis)
+    return max(lis) # Return the maximum value in LIS array
 
 # Example sequence with relevance scores from 1 to 5
 relevance_scores = [5, 4, 5, 4, 5, 4, 5, 4]
