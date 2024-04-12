@@ -18,8 +18,8 @@ The goal is to evaluate whether LLM-generated marketing content is suitably stru
 
 ### Approach: 
 1. **System Prompt**: Define the prompt used for generating marketing content by the LLM. [System Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/System%20Prompt.md).
-2. Automated Relevance Evaluation: Employ an LLM to score the relevance of responses based on curated examples, employing an evaluation system developed in Promptflow. [Relevance Evaluation Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Relevance%20Eval.md).
-3. Extended Evaluation Metrics: Implement additional evaluations for PEN, CIN, and LIS to assess the flow of content relevance over a series of responses.
+2. **Automated Relevance Evaluation**: Employ an LLM to score the relevance of responses based on curated examples, employing an evaluation system developed in Promptflow. [Relevance Evaluation Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Relevance%20Eval.md).
+3. **Extended Evaluation Metrics**: Implement additional evaluations for PEN, CIN, and LIS to assess the flow of content relevance over a series of responses.
 
 ### Implementation and Results
 
