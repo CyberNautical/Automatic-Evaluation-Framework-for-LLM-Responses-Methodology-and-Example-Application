@@ -1,20 +1,20 @@
 # Automatic Evaluation of LLM Responses and Example Application
 
 ## Introduction
-This document explores combining an unsupervised mathematical evaluation method detailed in the whitepaper by researchers from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) in conjunction with tailored relevance evaluations creates a powerful toolset for assessing AI-generated content. This innovative approach employs peer-review mechanisms among Large Language Models (LLMs) to evaluate each other’s responses to unlabeled questions. The method aims to efficiently align their rankings with human preferences without direct human feedback, highlighting the effectiveness of automatic evaluation methods over traditional supervised evaluations.
+This document explores the integration of an unsupervised mathematical evaluation method with tailored relevance evaluations to assess AI-generated content effectively. The approach, detailed in the whitepaper by researchers from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) employs peer-review mechanisms among Large Language Models (LLMs). These models evaluate each other’s responses to unlabeled questions, aiming to align their outputs with human preferences efficiently without direct feedback. This highlights the advantages of automatic evaluation methods over traditional supervised evaluations, particularly in how quickly and effectively they can be applied.
 
 ## Methodology:
-The methodology utilizes mathematical techniques to analyze the consistency and quality of the models' evaluations:
+The methodology combines mathematical techniques with a custom relevance evaluation to analyze the consistency and quality of the models' responses:
 - **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings.
 - **Count Inversions (CIN)**: Measures the degree of disorder within these rankings.
 - **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment.
-- **Custom Relevance Evaluation**: Scoring responses based on specific criteria relevant to the task, such as accuracy, completeness, engagement, or alignment with a given prompt.
+- **Custom Relevance Evaluation**: Scores responses based on criteria such as accuracy, completeness, engagement, or alignment with a given prompt.
 
- Combining these techniques (PEN, CIN, and LIS) with a custom automatic relevance evaluation can provide a comprehensive and robust assessment framework for evaluating AI-generated responses, especially in contexts where there is no single correct answer, and responses are open-ended.
+Together, these tools provide a robust framework for evaluating AI-generated responses, particularly in contexts where responses are open-ended and there is no single correct answer.
 
 ## Example Application
 **Scenario**:
-The objective is to evaluate whether LLM-generated marketing content is appropriately structured for posting on a social media blog, ensuring it is locally relevant and aligns with our targeted audience, brand, and voice.
+The goal is to evaluate whether LLM-generated marketing content is suitably structured for posting on a social media blog. This content must be locally relevant and align with the targeted audience, brand, and voice. It's important to note that the content creation here exclusively employs typical Prompt Engineering without the use of more complex techniques like Retrieval Augmented Generation (RAG) or model fine-tuning. This choice underscores the efficiency of the evaluation process—content was created and begun evaluation within the same day, demonstrating the rapid deployment capability of this approach.
 
 ### Approach: 
 1. **System Prompt**: Define the prompt used for generating marketing content by the LLM. [System Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/System%20Prompt.md).
@@ -27,6 +27,7 @@ The objective is to evaluate whether LLM-generated marketing content is appropri
 - **Variant 2**: Modified the response to introduce an irrelevant product mix (pizza in coffee), which was poorly evaluated due to its inconsistency with the brand and audience expectations, demonstrating the effectiveness of the LLM in distinguishing relevant content. [Variant 2](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%202.md)
 
 ### Evaluation for PEN, CIN, LIS
+Below is the Python code I used to calculate the mentioned metrics. This code is crucial for quantitatively assessing the structure and consistency of the LLM-generated content. Understanding these metrics helps in tuning the AI models to produce outputs that are not only relevant but also diverse and engaging.
 ```python
 import numpy as np
 from scipy.stats import entropy
@@ -95,7 +96,7 @@ Here are the results from evaluating the given relevance scores [5, 4, 5, 4, 5, 
 **3. Longest Increasing Subsequence**: 2
 - The length of the longest subsequence where each score is higher than or equal to the previous score in the sequence. This indicates the largest set of responses that show an increasing or at least non-decreasing trend in quality. The longest subsequence where each score is non-decreasing is limited to two, reflecting the back-and-forth pattern in the scoring.
 
-These results demonstrate how the specified metrics can quantitatively evaluate the structure and consistency of LLM-generated content, providing a systematic approach for refining marketing strategies and extending these principles to various forms of generative AI applications.
+These results demonstrate how the specified metrics can quantitatively evaluate the structure and consistency of LLM-generated content, providing a systematic approach for refining marketing strategies and extending these principles to various forms of generative AI applications. The calculated Permutation Entropy of 0.69, while indicating some diversity, suggests that there could be greater variability in the AI's responses. This insight can guide us to adjust the prompt engineering process to encourage a wider range of creative outputs. Meanwhile, the high Count of Inversions indicates a need to improve the sequence ordering to make the narrative flow more logical and appealing.
 
 ### Benefits of Using Combined Techniques:
 - **Comprehensive Feedback**: The combination allows evaluators to not only measure how "correct" or "appropriate" an individual response is but also to analyze the overall behavior of the AI across a series of responses. This is crucial for applications like chatbots, creative content generation, and educational tools, where context and progression are important.
@@ -110,8 +111,5 @@ The potential of this evaluation framework extends beyond textual content genera
 - **Interactive Media**: In interactive applications like video games or virtual reality, the framework can be used to evaluate narrative coherence or the adaptive responses of AI entities to user interactions.
 - **Educational Content**: For AI-generated educational material, these metrics can help in assessing the alignment of content with educational standards and learning objectives, ensuring the material's utility and relevance.
 
-### Embracing Challenges
-As the field of AI continues to evolve, the challenge remains to refine these evaluation techniques to keep pace with the increasing complexity of AI models. Future research will need to focus on enhancing the scalability of these methods, improving their sensitivity to subtle nuances, and expanding their applicability to ensure that AI-generated content remains relevant, engaging, and true to human values.
-
-### Call to Action
-For practitioners and researchers alike, there is a clear call to action to adopt and further develop these unsupervised evaluation methods. By doing so, the community can ensure that AI continues to serve as a beneficial and aligned tool in an increasingly digital world. 
+### Conclusion
+The integration of advanced mathematical metrics with custom relevance evaluations presents a new frontier in the automatic assessment of AI-generated content. This approach not only accelerates the evaluation process but also enhances its precision, making it indispensable in the era of rapid AI development. Future work should explore the adaptation of these metrics across different forms of AI outputs, such as visual content generated by AI and interactive AI systems in gaming. 
