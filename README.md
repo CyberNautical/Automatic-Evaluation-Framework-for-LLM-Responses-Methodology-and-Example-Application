@@ -1,7 +1,7 @@
 # Automatic Evaluation of LLM Responses and Example Application
 
 ## Introduction
-This document explores an unsupervised evaluation method detailed in the whitepaper by researchers from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830). This innovative approach employs peer-review mechanisms among Large Language Models (LLMs) to evaluate each other’s responses to unlabeled questions. The method aims to efficiently align their rankings with human preferences without direct human feedback, highlighting the effectiveness of automatic evaluation methods over traditional supervised evaluations.
+This document explores combining an unsupervised mathematical evaluation method detailed in the whitepaper by researchers from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) in conjunction with tailored relevance evaluations creates a powerful toolset for assessing AI-generated content. This innovative approach employs peer-review mechanisms among Large Language Models (LLMs) to evaluate each other’s responses to unlabeled questions. The method aims to efficiently align their rankings with human preferences without direct human feedback, highlighting the effectiveness of automatic evaluation methods over traditional supervised evaluations.
 
 ## Methodology:
 The methodology utilizes mathematical techniques to analyze the consistency and quality of the models' evaluations:
