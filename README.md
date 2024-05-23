@@ -1,4 +1,4 @@
-# Automatic Evaluation of LLM Responses and Example Application
+# Automatic Evaluation Framework for LLM Responses: Methodology and Example Application
 
 ## Introduction
 This document introduces a new framework named RELEVANCE (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), designed to automatically evaluate creative responses from Large Language Models (LLMs) where traditional evaluation techniques fall short. RELEVANCE is a comprehensive methodology combining tailored relevance assessments with advanced mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) , transforming basic tenets into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
