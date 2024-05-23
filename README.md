@@ -1,10 +1,10 @@
-# Automatic Evaluation Framework for LLM Responses: Methodology and Example Application
+# RELEVANCE: Automatic Evaluation Framework for LLM Responses.
 
 ## Introduction
-This document introduces a new framework named RELEVANCE (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), designed to automatically evaluate creative responses from Large Language Models (LLMs) where traditional evaluation techniques fall short. RELEVANCE is a comprehensive methodology combining tailored relevance assessments with advanced mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) , transforming basic tenets into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
+This document introduces **RELEVANCE** (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), a novel framework designed to automatically evaluate creative responses from Large Language Models (LLMs). RELEVANCE combines tailored relevance assessments with advanced mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830),transforming fundamental principles into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
 
 ## Methodology:
-The methodology combines mathematical techniques with custom relevance evaluations to ensure accuracy over time and adaptability to evolving LLM behaviors. Each metric serves a specific purpose:
+The methodology integrates mathematical techniques with custom relevance evaluations to ensure accuracy over time and adaptability to evolving LLM behaviors. Each metric serves a specific purpose:
 - **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings.
 - **Count Inversions (CIN)**: Measures the degree of disorder within these rankings.
 - **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment.
@@ -15,7 +15,7 @@ Together, these tools provide a robust framework for evaluating AI-generated res
 
 ## Example Application
 **Scenario**:
-The goal is to evaluate whether LLM-generated marketing content is suitably structured for posting on a social media blog. This content must be locally relevant and align with the targeted audience, brand, and voice. The content creation exclusively employs typical Prompt Engineering without complex techniques like Retrieval Augmented Generation (RAG) or model fine-tuning. This choice demonstrates the efficiency of the evaluation process, with content creation and evaluation beginning on the same day.
+The goal is to evaluate whether LLM-generated marketing content is suitably structured for posting on a social media blog. This content must be locally relevant and align with the targeted audience, brand, and voice. The content creation exclusively employs typical Prompt Engineering without complex techniques like Retrieval-Augmented Generation (RAG) or model fine-tuning. This choice demonstrates the efficiency of the evaluation process, with content creation and evaluation beginning on the same day.
 
 ### Approach: 
 1. **System Prompt**: Define the prompt used for generating marketing content by the LLM. [System Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/System%20Prompt.md).
@@ -23,8 +23,8 @@ The goal is to evaluate whether LLM-generated marketing content is suitably stru
 3. **Extended Evaluation Metrics**: Implement additional evaluations for PEN, CIN, and LIS to assess the flow of content relevance over a series of responses.
 
 ### Implementation and Results
-- **Variant 1**:  A prompt requesting an advertisement for "Neb Cafe latte" for a blog post aimed at boosting brand awareness among adults who prefer home-brewed coffee. The response emphasized luxury, convenience, and local relevance, earning a perfect score for relevance. [Variant 1](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%201.md)
-- **Variant 2**: Modified the response to introduce an irrelevant product mix (pizza in coffee), which was poorly evaluated due to its inconsistency with the brand and audience expectations, demonstrating the effectiveness of the LLM in distinguishing relevant content. [Variant 2](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%202.md)
+- **Variant 1**: A prompt requesting an advertisement for "Neb Cafe latte" for a blog post aimed at boosting brand awareness among adults who prefer home-brewed coffee. The response emphasized luxury, convenience, and local relevance, earning a perfect score for relevance.  [Variant 1](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%201.md)
+- **Variant 2**:Modified the response to introduce an irrelevant product mix (pizza in coffee), which was poorly evaluated due to its inconsistency with the brand and audience expectations, demonstrating the effectiveness of the LLM in distinguishing relevant content. [Variant 2](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%202.md)
 
 ### Evaluation for PEN, CIN, LIS
 Below is the Python code used to calculate the mentioned metrics. This code is crucial for quantitatively assessing the structure and consistency of LLM-generated content.
