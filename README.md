@@ -1,20 +1,21 @@
 # Automatic Evaluation of LLM Responses and Example Application
 
 ## Introduction
-This document explores the integration of an unsupervised mathematical evaluation method with tailored relevance evaluations to assess AI-generated content effectively. The approach, detailed in the whitepaper by researchers from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) employs peer-review mechanisms among Large Language Models (LLMs). These models evaluate each other’s responses to unlabeled questions, aiming to align their outputs with human preferences efficiently without direct feedback. This highlights the advantages of automatic evaluation methods over traditional supervised evaluations, particularly in how quickly and effectively they can be applied.
+This document introduces a new framework named RELEVANCE (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), designed to automatically evaluate creative responses from Large Language Models (LLMs) where traditional evaluation techniques fall short. RELEVANCE is a comprehensive methodology combining tailored relevance assessments with advanced mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830) , transforming basic tenets into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
 
 ## Methodology:
-The methodology combines mathematical techniques with a custom relevance evaluation to ensure the relevance evaluations remain accurate over time and are not compromised by the LLM's evolving interpretations or potential drift in model behavior, each metric serves a specific purpose:
+The methodology combines mathematical techniques with custom relevance evaluations to ensure accuracy over time and adaptability to evolving LLM behaviors. Each metric serves a specific purpose:
 - **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings.
 - **Count Inversions (CIN)**: Measures the degree of disorder within these rankings.
 - **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment.
 - **Custom Relevance Evaluation**: Scores responses based on criteria such as accuracy, completeness, engagement, or alignment with a given prompt.
+- **Initial Human Relevance Evaluation**: Ensures deeper contextual and semantic nuances are captured by the custom relevance evaluation.
 
-Together, these tools provide a robust framework for evaluating AI-generated responses, particularly in contexts where responses are open-ended and there is no single correct answer.
+Together, these tools provide a robust framework for evaluating AI-generated responses, especially in contexts where responses are open-ended and there is no single correct answer.
 
 ## Example Application
 **Scenario**:
-The goal is to evaluate whether LLM-generated marketing content is suitably structured for posting on a social media blog. This content must be locally relevant and align with the targeted audience, brand, and voice. It's important to note that the content creation here exclusively employs typical Prompt Engineering without the use of more complex techniques like Retrieval Augmented Generation (RAG) or model fine-tuning. This choice underscores the efficiency of the evaluation process—content was created and begun evaluation within the same day, demonstrating the rapid deployment capability of this approach.
+The goal is to evaluate whether LLM-generated marketing content is suitably structured for posting on a social media blog. This content must be locally relevant and align with the targeted audience, brand, and voice. The content creation exclusively employs typical Prompt Engineering without complex techniques like Retrieval Augmented Generation (RAG) or model fine-tuning. This choice demonstrates the efficiency of the evaluation process, with content creation and evaluation beginning on the same day.
 
 ### Approach: 
 1. **System Prompt**: Define the prompt used for generating marketing content by the LLM. [System Prompt](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/System%20Prompt.md).
@@ -26,7 +27,7 @@ The goal is to evaluate whether LLM-generated marketing content is suitably stru
 - **Variant 2**: Modified the response to introduce an irrelevant product mix (pizza in coffee), which was poorly evaluated due to its inconsistency with the brand and audience expectations, demonstrating the effectiveness of the LLM in distinguishing relevant content. [Variant 2](https://github.com/armansalimi-microsoft/Automatic-Evaluation-LLM-Relevance-Example/blob/main/Variant%202.md)
 
 ### Evaluation for PEN, CIN, LIS
-Below is the Python code I used to calculate the mentioned metrics. This code is crucial for quantitatively assessing the structure and consistency of the LLM-generated content. Understanding these metrics helps in tuning the AI models to produce outputs that are not only relevant but also diverse and engaging.
+Below is the Python code used to calculate the mentioned metrics. This code is crucial for quantitatively assessing the structure and consistency of LLM-generated content.
 ```python
 import numpy as np
 from scipy.stats import entropy
@@ -106,7 +107,103 @@ Here are the results from evaluating the given relevance scores [5, 4, 5, 4, 5, 
 
 These results demonstrate how the specified metrics can quantitatively evaluate the structure and consistency of LLM-generated content, providing a systematic approach for refining marketing strategies and extending these principles to various forms of generative AI applications. The calculated Permutation Entropy of 0.69, while indicating some diversity, suggests that there could be greater variability in the AI's responses. This insight can guide us to adjust the prompt engineering process to encourage a wider range of creative outputs. Meanwhile, the high Count of Inversions indicates a need to improve the sequence ordering to make the narrative flow more logical and appealing.
 
-### Benefits of Using Combined Techniques:
+## Comparison Of Common Evaluation Techniques vs RELEVANCE
+The automatic evaluation method using PEN, CIN, and LIS presents a scalable, objective, and interpretable framework ideal for evaluating open-ended and creative AI responses. It balances the need for detailed structural and coherence analysis without the complexities and resource demands of some other advanced techniques.
+
+### Human Evaluation
+#### Pros:
+- **High Accuracy**: Human judgment is often considered the gold standard, especially for subjective tasks.
+- **Contextual Understanding**: Humans can understand nuanced contexts and subtle meanings.
+- **Flexibility**: Can adapt to various types of content and criteria.
+#### Cons:
+- **Scalability**: Not feasible for large-scale evaluations due to time and cost constraints.
+- **Subjectivity**: Results can vary significantly between different evaluators.
+- **Bias**: Prone to individual biases and inconsistencies.
+#### Comparison:
+- RELEVANCE is more scalable and objective, eliminating human biases and inconsistencies. However, lacks the deep contextual understanding that humans provide.
+
+### Automated Metrics (BLEU, ROUGE, METEOR)
+#### Pros:
+- **Scalability**: Can process large volumes of text quickly.
+- **Consistency**: Provides consistent and reproducible results.
+- **Widely Used**: Established benchmarks in many NLP tasks.
+#### Cons:
+- **Contextual Insensitivity**: Often fails to capture contextual and semantic nuances.
+- **Rigidity**: Based on fixed reference texts, making it less suitable for creative or open-ended responses.
+#### Comparison:
+- RELEVANCE offers more flexibility and is better suited for open-ended tasks as it doesn't rely on fixed references. Provides deeper insights into the structure and coherence of responses.
+
+### Learned Metrics (BERTScore, MoverScore)
+#### Pros:
+- **Contextual Awareness**: Leverages contextual embeddings to better capture semantic similarity.
+- **Adaptability**: Can handle a variety of text types and styles.
+#### Cons:
+- **Complexity**: Requires significant computational resources and expertise to implement.
+- **Dependence on Pre-trained Models**: Effectiveness is tied to the quality of the underlying pre-trained models.
+#### Comparison:
+- RELEVANCE is simpler to implement and computationally less demanding. Offers a clear, interpretable mathematical framework, although may lack some semantic depth provided by learned metrics.
+
+### Task-Specific Metrics (F1 Score, Accuracy, Precision)
+#### Pros:
+- **Simplicity**: Easy to understand and implement.
+- **Directness**: Provides clear and direct measures of performance for specific tasks.
+#### Cons:
+- **Limited Scope**: Often not applicable to creative or open-ended tasks.
+- **Reductionist**: Reduces performance to single numbers, missing out on complex nuances.
+#### Comparison:
+- RELEVANCE is more comprehensive for open-ended and creative tasks, capturing a wider range of evaluation aspects.
+
+### Adversarial Evaluation
+#### Pros:
+- **Robustness Testing**: Identifies weaknesses and edge cases effectively.
+- **Challenge-Driven**: Pushes models to improve by addressing specific failure modes.
+#### Cons:
+- **Narrow Focus**: May not provide a holistic evaluation of overall performance.
+- **Resource Intensive**: Requires generation and evaluation of adversarial examples.
+#### Comparison:
+- RELEVANCE provides a more balanced and general-purpose evaluation, though less focused on robustness under adversarial conditions.
+
+### Content-Based Metrics (Perplexity, Diversity)
+#### Pros:
+- **Model-Specific**: Tailored to evaluate language models directly.
+- **Insightful**: Provides insights into model behavior and generation patterns.
+#### Cons:
+- **Limited Scope**: Perplexity is more suited to language modeling tasks and may not correlate with human judgment of quality.
+- **Diversity Focus**: While diversity is important, it alone doesn't capture overall response quality.
+#### Comparison:
+- RELEVANCE offers a broader evaluation framework that considers structure and coherence, beyond just perplexity or diversity.
+
+### Peer Review Mechanisms (Self-Evaluation)
+#### Pros:
+- **Innovative**: Encourages models to self-assess and improve autonomously.
+- **Continuous Learning**: Can lead to continuous improvement without external input.
+#### Cons:
+- **Circularity**: Risk of reinforcing existing biases and errors within the model.
+- **Reliability**: Dependence on the model's existing capabilities to judge accurately.
+#### Comparison:
+- RELEVANCE provides a more independent and objective evaluation framework, reducing the risk of circularity and bias reinforcement.
+
+### User Engagement Metrics (CTR, Engagement Time)
+#### Pros:
+- **Practical**: Directly tied to user interaction and satisfaction.
+- **Continuous Learning**: Can lead to continuous improvement without external input.
+#### Cons:
+- **External Factors**: Influenced by many factors beyond content quality (e.g., presentation, timing).
+- **Short-Term Focus**: May prioritize immediate engagement over long-term value or quality.
+#### Comparison:
+- RELEVANCE focuses purely on content quality and coherence, offering a more content-centric evaluation.
+
+### Hybrid Approaches
+#### Pros:
+- **Comprehensive**: Combines the strengths of multiple methods.
+- **Balanced**: Mitigates the weaknesses of individual techniques.
+#### Cons:
+- **Complexity**: More challenging to implement and manage.
+- **Resource Intensive**: Requires coordination and integration of various evaluation methods.
+#### Comparison:
+- RELEVANCE while less comprehensive, it offers a streamlined and mathematically robust approach that is easier to implement and manage.
+
+### Additional Use Case Benefits of Using RELEVANCE:
 - **Comprehensive Feedback**: The combination allows evaluators to not only measure how "correct" or "appropriate" an individual response is but also to analyze the overall behavior of the AI across a series of responses. This is crucial for applications like chatbots, creative content generation, and educational tools, where context and progression are important.
 - **Improved Model Training**: These metrics can also inform the training process for AI models. Understanding where and how frequently inversions occur or how long the longest increasing subsequence is can help in tuning the model to produce more coherent and contextually appropriate responses.
 - **Scalability**: Automatic evaluations are scalable and can handle large volumes of data without the need for extensive human intervention. This is especially useful in iterative development environments and continuous deployment settings.
@@ -119,11 +216,11 @@ These results demonstrate how the specified metrics can quantitatively evaluate 
 - **Regular calibration**: Users who implement this method should regularly review these metrics to maintain their accuracy and reliability as the LLM evolves.
 
 ### Expanding the Horizon
-The potential of this evaluation framework extends beyond textual content generation. It can be adapted to assess a variety of open-ended responses beyond textual content. For instance:
+The evaluation framework can be adapted to assess a variety of open-ended responses beyond textual content:
 
 - **GenAI Images**: Evaluate the relevance and creativity of images generated from textual descriptions. By applying similar metrics, one can assess how closely the sequence of generated images aligns with a series of descriptions or the thematic consistency across a portfolio of generated artwork.
 - **Interactive Media**: In interactive applications like video games or virtual reality, the framework can be used to evaluate narrative coherence or the adaptive responses of AI entities to user interactions.
 - **Educational Content**: For AI-generated educational material, these metrics can help in assessing the alignment of content with educational standards and learning objectives, ensuring the material's utility and relevance.
 
 ### Conclusion
-The integration of advanced mathematical metrics with custom relevance evaluations presents a new frontier in the automatic assessment of AI-generated content. This document has outlined a comprehensive framework for evaluating AI-generated responses using a blend of unsupervised mathematical metrics and tailored relevance assessments. The integration of these methods not only enhances the depth and reliability of evaluations but also ensures that AI systems remain aligned with evolving human standards and expectations. Future work should explore the adaptation of these metrics across different forms of AI outputs, such as visual content generated by AI and interactive AI systems in gaming. 
+The integration of advanced mathematical metrics with custom relevance evaluations presents a new frontier in the automatic assessment of AI-generated content. The RELEVANCE framework enhances the depth and reliability of evaluations, ensuring AI systems remain aligned with evolving human standards and expectations. Future work should explore adapting these metrics across different forms of AI outputs, such as visual content and interactive AI systems.
