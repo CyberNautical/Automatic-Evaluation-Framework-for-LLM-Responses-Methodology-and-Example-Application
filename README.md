@@ -5,9 +5,9 @@ This document introduces **RELEVANCE** (Relevance and Entropy-based Evaluation w
 
 ## Methodology:
 The methodology integrates mathematical techniques with custom relevance evaluations to ensure accuracy over time and adaptability to evolving LLM behaviors. Each metric serves a specific purpose:
-- **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings.
-- **Count Inversions (CIN)**: Measures the degree of disorder within these rankings.
-- **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment.
+- **Permutation Entropy (PEN)**: Quantifies the randomness of response rankings compared to human rankings. Ensures that the sequence isn't too random, maintaining a predictable level of complexity.
+- **Count Inversions (CIN)**: Measures the degree of disorder within these rankings. Ensures that the sequence is ordered correctly, with fewer out-of-order pairs.
+- **Longest Increasing Subsequence (LIS)**: Identifies the length of the most consistent sequence of responses, mirroring human judgment. Ensures that there are long, consistent patterns of increasing relevance.
 - **Custom Relevance Evaluation**: Scores responses based on criteria such as accuracy, completeness, engagement, or alignment with a given prompt.
 - **Initial Human Relevance Evaluation**: Ensures deeper contextual and semantic nuances are captured by the custom relevance evaluation.
 
