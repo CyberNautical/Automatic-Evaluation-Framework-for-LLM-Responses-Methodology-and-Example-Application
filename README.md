@@ -1,7 +1,7 @@
 # RELEVANCE: Automatic Evaluation Framework for LLM Responses.
 
 ## Introduction
-This document introduces **RELEVANCE** (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), a novel framework designed to automatically evaluate creative responses from Large Language Models (LLMs). RELEVANCE combines tailored relevance assessments with advanced mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830),transforming fundamental principles into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
+This document introduces **RELEVANCE** (Relevance and Entropy-based Evaluation with Longitudinal Inversion Metrics), a novel framework designed to automatically evaluate creative responses from Large Language Models (LLMs). RELEVANCE combines tailored relevance assessments with mathematical metrics to ensure AI-generated content aligns with human standards and maintains consistency over time. By monitoring these metrics over time, you can detect when the LLM's relevance evaluation starts to slip or hallucinate. This approach builds on research from Peking and Tianjin Universities, titled [Peer-review-in-LLMs: Automatic Evaluation Method for LLMs in Open-environment](https://ar5iv.labs.arxiv.org/html/2402.01830),transforming fundamental principles into a new method for evaluating Generative Artificial Intelligence (GenAI) content.
 
 ## Methodology:
 The methodology integrates mathematical techniques with custom relevance evaluations to ensure accuracy over time and adaptability to evolving LLM behaviors. Each metric serves a specific purpose:
@@ -11,7 +11,7 @@ The methodology integrates mathematical techniques with custom relevance evaluat
 - **Custom Relevance Evaluation**: Scores responses based on criteria such as accuracy, completeness, engagement, or alignment with a given prompt.
 - **Initial Human Relevance Evaluation**: Ensures deeper contextual and semantic nuances are captured by the custom relevance evaluation.
 
-Together, these tools provide a robust framework for evaluating AI-generated responses, especially in contexts where responses are open-ended and there is no single correct answer.
+Together, these tools provide a robust framework for evaluating AI-generated responses, especially in contexts where responses are open-ended and there is no single correct answer. For instance, a sudden increase in permutation entropy or inversion count, or a decrease in LIS, can alert you to potential issues, prompting further investigation or model adjustments.
 
 ## Example Application
 **Scenario**:
